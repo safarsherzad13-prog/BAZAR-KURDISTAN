@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="ckb" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="BAZARA — بازاڕێکی ئۆنلاین بۆ کڕین و فرۆشتن">
+  <meta name="theme-color" content="#176d58">
+  <title>BAZARA | بازاڕی ئۆنلاین</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#"><span class="brand-mark">ب</span><span>BAZARA<small>بازاڕی ئۆنلاین</small></span></a>
+    <form id="searchForm" class="search"><span aria-hidden="true">⌕</span><input id="searchInput" placeholder="بگەڕێ بۆ کاڵا، خانوو، ئۆتۆمبێل..." aria-label="گەڕان"><button type="submit">گەڕان</button></form>
+    <nav id="navActions"><button class="ghost" id="loginBtn">چوونەژوورەوە</button><button class="primary" id="postBtn">+ زیادکردنی ئیعلان</button></nav>
+  </header>
+  <main>
+    <div id="setupNotice" class="setup-notice hidden"><b>هێشتا Supabase ڕێک نەخراوە.</b> فایلەکانی <code>config.js</code> و <code>supabase-setup.sql</code> بە ڕێنمایی README ڕێکبخە. تا ئەو کاتە ئەم وێبسایتە ناتوانێت هەژمار و داتابەیسی ڕاستەقینە بەکاربهێنێت.</div>
+    <div id="toast" class="toast hidden" role="status"></div>
+    <section class="hero">
+      <div class="hero-copy"><span class="eyebrow">بازاڕەکەت، لە یەک شوێن</span>
+        <h1>بە ئاسانی <em>بدۆزەرەوە.</em><br>بە دڵنیایی بفرۆشە.</h1>
+        <p>کاڵا، ئۆتۆمبێل، خانوو و خزمەتگوزاری لە بازاڕێکی یەکگرتووی ئۆنلاین.</p>
+        <div class="hero-actions"><button class="primary large" id="heroPostBtn">ئیعلانێک دابنێ <span>←</span></button><span class="trust">● سادە · خێرا · بەردەست</span></div>
+      </div>
+      <div class="hero-art"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+        <div class="floating-card card-main"><span class="product-emoji">📱</span><div><b>کاڵاکەت لێرە دەست پێ دەکات</b><small>ئیعلانەکانت بە ئاسانی بەڕێوە ببە</small></div></div>
+        <div class="floating-card card-small"><span>🏠</span><div><b>خانوو و زەوی</b><small>شوێنی خۆت بدۆزەرەوە</small></div></div>
+        <div class="floating-card card-price"><small>بازاڕی ئازاد</small><b>بفرۆشە · بکڕە</b></div>
+      </div>
+    </section>
+    <section class="categories"><div class="section-heading"><div><span class="eyebrow">بەشی دڵخوازت هەڵبژێرە</span><h2>بگەڕێ لە ناو پۆلەکان</h2></div><span class="muted">هەموو پۆلەکان</span></div>
+      <div class="category-grid">
+        <button class="category active" data-category="هەموو"><span>✦</span><b>هەموو</b></button>
+        <button class="category" data-category="ئەلیکترۆنیات"><span>📱</span><b>ئەلیکترۆنیات</b></button>
+        <button class="category" data-category="ئۆتۆمبێل"><span>🚗</span><b>ئۆتۆمبێل</b></button>
+        <button class="category" data-category="خانوو و زەوی"><span>🏠</span><b>خانوو و زەوی</b></button>
+        <button class="category" data-category="ماڵ و ژیان"><span>🛋️</span><b>ماڵ و ژیان</b></button>
+        <button class="category" data-category="کار و خزمەتگوزاری"><span>🧰</span><b>کار و خزمەتگوزاری</b></button>
+      </div>
+    </section>
+    <section class="listings"><div class="section-heading"><div><span class="eyebrow">ئیعلانە پەسەندکراوەکان</span><h2>ئیعلانەکان</h2></div><span id="listingCount" class="muted">بارکردن...</span></div>
+      <div id="listingGrid" class="listing-grid"></div><div id="emptyState" class="empty hidden"><span>⌕</span><h3>هیچ ئیعلانێک نەدۆزرایەوە</h3><p>وشەیەکی تر تاقی بکەرەوە یان پۆلێکی تر هەڵبژێرە.</p></div>
+    </section>
+    <section id="accountPanel" class="account-panel hidden"><div class="section-heading"><div><span class="eyebrow">هەژماری تۆ</span><h2 id="accountTitle">داشبۆرد</h2></div><button id="signOutBtn" class="ghost">چوونەدەرەوە</button></div><p id="accountSummary" class="muted"></p><div id="ownerTools" class="hidden"><h3>بەڕێوەبردنی ئیعلانەکان</h3><div id="manageListings" class="manage-list"></div></div><div id="myListings"><h3>ئیعلانەکانی من</h3><div id="myListingRows" class="manage-list"></div></div></section>
+    <section class="owner-banner"><div><span class="eyebrow">BAZARA</span><h2>بازاڕێکی نوێ بۆ کڕین و فرۆشتن.</h2><p>پەیوەندی: <a href="tel:07832775646">07832775646</a> · <a href="mailto:safarsherzad13@gmail.com">safarsherzad13@gmail.com</a></p></div><a class="light-button" href="mailto:safarsherzad13@gmail.com">پەیوەندیمان پێوە بکە ←</a></section>
+  </main>
+  <footer><a class="brand footer-brand" href="#"><span class="brand-mark">ب</span><span>BAZARA<small>بازاڕی ئۆنلاین</small></span></a><div><b>پەیوەندی</b><a href="tel:07832775646">07832775646</a><a href="mailto:safarsherzad13@gmail.com">safarsherzad13@gmail.com</a></div><small>© 2026 BAZARA. هەموو مافەکان پارێزراون.</small></footer>
+
+  <dialog id="authDialog"><form id="authForm" class="dialog-form"><button type="button" class="dialog-close" data-close aria-label="داخستن">×</button><span class="eyebrow">هەژماری BAZARA</span><h2 id="authTitle">چوونەژوورەوە</h2><p id="authHelp" class="muted">بچۆ ژوورەوە بۆ بەڕێوەبردنی ئیعلانەکانت.</p>
+    <div id="nameField" class="hidden"><label>ناوی تەواو<input name="full_name" autocomplete="name" placeholder="ناوی تۆ"></label></div>
+    <label>ئیمەیڵ<input required name="email" type="email" autocomplete="email" placeholder="name@example.com"></label>
+    <label>وشەی نهێنی<input required name="password" type="password" minlength="8" autocomplete="current-password" placeholder="لانیکەم ٨ پیت"></label>
+    <button class="primary full" type="submit" id="authSubmit">چوونەژوورەوە</button><button type="button" class="text-button" id="toggleAuth">هەژمارت نییە؟ هەژمار دروست بکە</button>
+  </form></dialog>
+
+  <dialog id="postDialog"><form id="postForm" class="dialog-form"><button type="button" class="dialog-close" data-close aria-label="داخستن">×</button><span class="eyebrow">ئیعلانێکی نوێ</span><h2>کاڵاکەت زیاد بکە</h2>
+    <label>ناوی کاڵا<input required name="title" maxlength="120" placeholder="بۆ نموونە: iPhone 15 Pro"></label>
+    <div class="form-row"><label>نرخ (دینار)<input required name="price" type="number" min="0" step="1" placeholder="500000"></label><label>پۆل<select name="category"><option>ئەلیکترۆنیات</option><option>ئۆتۆمبێل</option><option>خانوو و زەوی</option><option>ماڵ و ژیان</option><option>کار و خزمەتگوزاری</option></select></label></div>
+    <label>شار / شوێن<input required name="location" maxlength="100" placeholder="هەولێر"></label>
+    <label>وێنەی کاڵا<input required name="image" type="file" accept="image/png,image/jpeg,image/webp"></label>
+    <label>وردەکاری<textarea name="description" rows="3" maxlength="3000" placeholder="زانیارییەکانی کاڵاکەت..."></textarea></label>
+    <p class="muted">ئیعلانە نوێیەکان سەرەتا چاوەڕێی پەسەندکردنی Owner دەکەن.</p><button class="primary full" type="submit">ناردنی ئیعلان</button>
+  </form></dialog>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script><script src="app.js"></script>
+</body></html>
